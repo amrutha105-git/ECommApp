@@ -1,0 +1,10 @@
+.metadata/
+.postman/
+postman/
+
+target/
+bin/
+
+.classpath
+.project
+.settings/

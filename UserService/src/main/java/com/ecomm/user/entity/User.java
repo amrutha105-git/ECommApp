@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,10 +38,18 @@ public class User {
 	@Column(updatable=false)
 	private LocalDateTime createdAt;
 	
+	
 	private LocalDateTime modifiedAt;
 	
 	@PreUpdate
 	public void setModifiedAt() {
 		this.modifiedAt=LocalDateTime.now();
 	}
+	
+	@OneToOne(mappedBy = "user")
+	private Profile profile;
+	
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private Role role;
 }
